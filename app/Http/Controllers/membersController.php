@@ -9,5 +9,23 @@ use App\Models\members; //membersコントローラーはmembersモデルを使�
 
 class membersController extends Controller
 {
-    //メンバー一覧
+    /**メンバー一覧
+    * @param Request $request
+    * @return Response
+    */
+    public function index(Request $request)
+    {
+        $members = members::get();
+        return view('members.index', [
+            'members_list' => $members,
+        ]);
+    }
+
+    /** 削除処理 */
+
+
+    /**登録処理 */
+
+
 }
+
