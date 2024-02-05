@@ -18,4 +18,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/members', [App\Http\Controllers\membersController::class, 'index'])->name('members');
+Route::get('/members', [App\Http\Controllers\membersController::class, 'index']);
+Route::get('/register', [App\Http\Controllers\membersController::class, 'register']); //登録画面
+Route::post('/registermember', [App\Http\Controllers\membersController::class,'registermember']); //入力されたデータを登録する

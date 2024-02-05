@@ -1,7 +1,7 @@
-@extends('layouts.app')
+<a href="{{ url('/register') }}">登録</a>
 
-@section('content')
 
+    
 <!-- 会員一覧ページ表示 -->
 @if (count($members_list) > 0)
 <div class="panel panel-default">
@@ -12,35 +12,38 @@
     <div class="panel-body">
         <table class="table table-striped members-table">
 
-            <!-- テーブルヘッダ -->
-            <thead>
-                <th>>> 登録</th>
-            </thead>
+    <!--ヘッダ -->
+    <div>
+        <a href="/register"> >>登録 </a>
+    </div>
+            
 
             <!-- テーブル本体 -->
             <tbody>
-                @foreach ($members_list as $member)
                 <tr>
-                    <!-- 会員一覧 -->
-                    <td class="table-members">
-                        {{ $member->name }}
-                    </td>
-                    <td class="table-members">
-                        {{ $member->phone }}
-                    </td>
-                    <td class="table-members">
-                        {{ $member->email }}
-                    </td>
-
-                    <td>
-                        >> 編集
-                    </td>
+                    <th>名前</th>
+                    <th>電話番号</th>
+                    <th>メールアドレス</th>
+                    <th> </th>
                 </tr>
+                @foreach ($members_list as $member)
+                    <tr>
+                        <td class="table-members">
+                            {{ $member->name }}
+                        </td>
+                        <td class="table-members">
+                            {{ $member->phone }}
+                        </td>
+                        <td class="table-members">
+                            {{ $member->email }}
+                        </td>
+                        <td>
+                            <a href=""> >>編集 </a>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
 @endif
-@endsection
-
