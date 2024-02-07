@@ -24,7 +24,7 @@
                             {{ $member->email }}
                         </td>
                         <td>
-                            <a href=""> >>編集 </a>
+                            <a href="/edit/{{$value->id}}"> >>編集 </a>
                         </td>
                     </tr>
                 @endforeach

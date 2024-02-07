@@ -70,7 +70,17 @@ class membersController extends Controller
     ]);
 }
 
+    /**編集処理  書き換え */
+    //既存のレコードを取得して、編集してから保存する
+    public function memberEdit(Request $request){
+        $members = Member::where('id','=',$request->id)->first();
+        $members ->name = $request ->name;
+        $members ->phone = $request ->phone;
+        $members ->email = $request ->email;
+        $members ->save();
 
+        return redirect('/members');
+    }
 
 
 
@@ -78,4 +88,3 @@ class membersController extends Controller
 
     
 }
-

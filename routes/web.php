@@ -26,3 +26,5 @@ Route::post('/members', [App\Http\Controllers\membersController::class, 'index']
 Route::get('/edit/{id}', [App\Http\Controllers\membersController::class, 'edit']);
 // /edit/{id}を渡してあげると、membercontrollerの/editが動きます
 Route::POST('/memberEdit', [App\Http\Controllers\membersController::class, 'memberEdit']);
+
+Route::get('/memberDelete/{id}', [App\Http\Controllers\membersController::class, 'memberDelet']);
