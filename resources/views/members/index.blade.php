@@ -3,7 +3,7 @@
         <a href="/register"> >>登録 </a>
     </div>
             
-
+        <table>
             <!-- テーブル本体 -->
             <tbody>
                 <tr>

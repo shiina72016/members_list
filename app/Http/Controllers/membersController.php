@@ -56,6 +56,24 @@ class membersController extends Controller
         return view('members.create');
     }
 
+    /**編集処理 */
+    public function edit(Request $request){
+    //requestのデータをlogに出力
+    //  \Log::channel('debug')->info('edit時に送信するID);
+    //  \Log::channel('debug')->info('$request->id);
+
+    //一覧から指定されたIDと同じIDのレコードを取得する
+    $member = Member::where('id','=', $request->id)->first();
+
+    return view('edit')->with([
+        'member' => $member,
+    ]);
+}
+
+
+
+
+
     /**削除処理 */
 
     
