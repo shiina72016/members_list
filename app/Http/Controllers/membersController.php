@@ -39,26 +39,16 @@ class membersController extends Controller
         * @param(引数データ) Request $request     //@タグ名・型/クラス・名前//変数
         * @return(戻り値) Response
         */
-
-        public function registermember(Request $request)
-        {
-            $members = new menbaer();
+        public function registermember(Request $request){ //登録できたデータをrequestで受け取る
+            //新しくレコードを追加する（登録）
+            $members = new members();
             $members ->name = $request ->name;
             $members ->phone = $request ->phone;
-            $members ->emal = $request ->emal;
+            $members ->email = $request ->email;
             $members ->save();
 
             return redirect('/members');
         }
-    
-
-        
-
-
-
-    /**削除処理 */
-
-
 
 
     public function register(Request $request)
@@ -66,6 +56,8 @@ class membersController extends Controller
         return view('members.create');
     }
 
+    /**削除処理 */
 
+    
 }
 

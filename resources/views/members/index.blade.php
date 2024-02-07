@@ -1,18 +1,4 @@
-<a href="{{ url('/register') }}">登録</a>
-
-
-    
-<!-- 会員一覧ページ表示 -->
-@if (count($members_list) > 0)
-<div class="panel panel-default">
-    <div class="panel-heading">
-        Current members
-    </div>
-
-    <div class="panel-body">
-        <table class="table table-striped members-table">
-
-    <!--ヘッダ -->
+    <!-- 会員一覧ページ表示 -->
     <div>
         <a href="/register"> >>登録 </a>
     </div>
@@ -46,4 +32,3 @@
         </table>
     </div>
 </div>
-@endif
