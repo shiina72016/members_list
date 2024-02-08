@@ -12,19 +12,19 @@
                     <th>メールアドレス</th>
                     <th> </th>
                 </tr>
-                @foreach ($members_list as $member)
+                @foreach ($members_list as $members)
                     <tr>
                         <td class="table-members">
-                            {{ $member->name }}
+                            {{ $members->name }}
                         </td>
                         <td class="table-members">
-                            {{ $member->phone }}
+                            {{ $members->phone }}
                         </td>
                         <td class="table-members">
-                            {{ $member->email }}
+                            {{ $members->email }}
                         </td>
                         <td>
-                            <a href="/edit/{{$value->id}}"> >>編集 </a>
+                            <a href="/edit/{{$members->id}}"> >>編集 </a>
                         </td>
                     </tr>
                 @endforeach

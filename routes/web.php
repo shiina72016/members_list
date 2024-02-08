@@ -18,13 +18,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/members', [App\Http\Controllers\membersController::class, 'index']);//TOPページ
-Route::get('/register', [App\Http\Controllers\membersController::class, 'register']); //登録画面
-Route::POST('/registermember', [App\Http\Controllers\membersController::class,'registermember']); //入力されたデータを登録する
-Route::post('/members', [App\Http\Controllers\membersController::class, 'index']);//TOPページ
+Route::get('/top', [App\Http\Controllers\MemberController::class, 'index']);//TOPページ
+Route::post('/top', [App\Http\Controllers\MemberController::class, 'index']);//TOPページ
+Route::get('/register', [App\Http\Controllers\MemberController::class, 'register']); //登録画面
+Route::post('/registermember', [App\Http\Controllers\MemberController::class,'registermember']); //入力されたデータを登録する
 
-Route::get('/edit/{id}', [App\Http\Controllers\membersController::class, 'edit']);
+Route::get('/edit/{id}', [App\Http\Controllers\MemberController::class, 'edit']);
 // /edit/{id}を渡してあげると、membercontrollerの/editが動きます
-Route::POST('/memberEdit', [App\Http\Controllers\membersController::class, 'memberEdit']);
+Route::post('/memberEdit', [App\Http\Controllers\MemberController::class, 'memberEdit']);
 
-Route::get('/memberDelete/{id}', [App\Http\Controllers\membersController::class, 'memberDelet']);
+Route::get('/memberDelete/{id}', [App\Http\Controllers\MemberController::class, 'memberDelet']);

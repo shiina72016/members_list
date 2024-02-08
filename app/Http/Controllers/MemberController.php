@@ -7,30 +7,27 @@ use Illuminate\Http\Request;
 
 use App\Models\members; //membersコントローラーはmembersモデルを使用する
 
-class membersController extends Controller
+class MemberController extends Controller
 {
 
 /**トップページ     */
-    public function members(){
-        //memberテーブルに入っているレコードを全て取得する
-        $member = Mennbar::all();
-        \Log::channel('debug')->info($member);
+    public function top(){
+        //membersテーブルに入っているレコードを全て取得する
+        $members = Member::all();
+        \Log::channel('debug')->info($members);
 
-        return view ('member')->with([
-            'member' => $member,
+        return view ('top')->with([
+            'member' => $members,
         ]);
     }
 
 
-    /**メンバー一覧
-    * @param Request $request
-    * @return Response
-    */
+    /**メンバー一覧*/
     //登録の画面を渡す処理↓
     public function index(Request $request)
     {
-        $members = members::get();
-        return view('members.index', [ //←members/index.bladeのファイル
+        $members = Member::get();
+        return view('members.index', [ //←members/index.bladeを画面に映す
             'members_list' => $members,
         ]);
     }
@@ -39,6 +36,13 @@ class membersController extends Controller
         * @param(引数データ) Request $request     //@タグ名・型/クラス・名前//変数
         * @return(戻り値) Response
         */
+
+        public function register() //registerを呼び出したら
+        {                                          //create.bladeが画面に表示される
+            return view('members.create');
+        }
+    
+
         public function registermember(Request $request){ //登録できたデータをrequestで受け取る
             //新しくレコードを追加する（登録）
             $members = new members();
@@ -47,14 +51,9 @@ class membersController extends Controller
             $members ->email = $request ->email;
             $members ->save();
 
-            return redirect('/members');
+            return redirect('/top');  //トップページに返す
         }
 
-
-    public function register(Request $request)
-    {
-        return view('members.create');
-    }
 
     /**編集処理 */
     public function edit(Request $request){
@@ -63,10 +62,9 @@ class membersController extends Controller
     //  \Log::channel('debug')->info('$request->id);
 
     //一覧から指定されたIDと同じIDのレコードを取得する
-    $member = Member::where('id','=', $request->id)->first();
-
+    $members = Member::where('id','=', $request->id)->first();
     return view('edit')->with([
-        'member' => $member,
+        'member' => $members,
     ]);
 }
 
@@ -79,12 +77,21 @@ class membersController extends Controller
         $members ->email = $request ->email;
         $members ->save();
 
-        return redirect('/members');
+        return redirect('/top');
     }
 
 
 
     /**削除処理 */
+
+    //既存のレコードを取得して削除する
+    public function memberDelete(Request $request)
+    {
+        $members = Member::where('id','=',$request->id)->first();
+        $members ->delete();
+
+        return redirect('/top');
+    }
 
     
 }
