@@ -13,11 +13,11 @@ class MemberController extends Controller
 /**トップページ     */
     public function top(){
         //membersテーブルに入っているレコードを全て取得する
-        $members = Member::all();
+        $members = members::all();
         \Log::channel('debug')->info($members);
 
         return view ('top')->with([
-            'member' => $members,
+            'members' => $members,
         ]);
     }
 
@@ -26,7 +26,7 @@ class MemberController extends Controller
     //登録の画面を渡す処理↓
     public function index(Request $request)
     {
-        $members = Member::get();
+        $members = members::get();
         return view('members.index', [ //←members/index.bladeを画面に映す
             'members_list' => $members,
         ]);
@@ -62,16 +62,16 @@ class MemberController extends Controller
     //  \Log::channel('debug')->info('$request->id);
 
     //一覧から指定されたIDと同じIDのレコードを取得する
-    $members = Member::where('id','=', $request->id)->first();
-    return view('edit')->with([
-        'member' => $members,
+    $members = members::where('id','=', $request->id)->first();
+    return view('members.edit')->with([
+        'members' => $members,
     ]);
-}
+    }
 
     /**編集処理  書き換え */
     //既存のレコードを取得して、編集してから保存する
     public function memberEdit(Request $request){
-        $members = Member::where('id','=',$request->id)->first();
+        $members = members::where('id','=',$request->id)->first();
         $members ->name = $request ->name;
         $members ->phone = $request ->phone;
         $members ->email = $request ->email;
@@ -87,11 +87,15 @@ class MemberController extends Controller
     //既存のレコードを取得して削除する
     public function memberDelete(Request $request)
     {
-        $members = Member::where('id','=',$request->id)->first();
+        $members = members::where('id','=',$request->id)->first();
         $members ->delete();
 
         return redirect('/top');
     }
 
-    
+    public function useModel(Request $request){
+
+    return redirect('/top');
+    }
+
 }
