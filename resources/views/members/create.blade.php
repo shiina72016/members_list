@@ -12,7 +12,9 @@
 <body>
     
 
-
+@foreach ($errors->all() as $error)
+  <li>{{$error}}</li>
+@endforeach
 <!-- 会員登録画面 -->
 <div style="width: 300px; margin: 100px auto;">
     <form action="/registermember" method="POST" class="">

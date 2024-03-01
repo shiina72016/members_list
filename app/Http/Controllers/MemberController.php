@@ -44,6 +44,12 @@ class MemberController extends Controller
     
 
         public function registermember(Request $request){ //登録できたデータをrequestで受け取る
+            $request->validate([
+                'name'=>'required|max:20',
+                'phone' => 'required | numeric | digits_between:8,11',
+                'email' => 'required | string | email:strict,dns,spoof | max:255 | unique:users',
+            ]);
+            
             //新しくレコードを追加する（登録）
             $members = new members();
             $members ->name = $request ->name;
@@ -71,6 +77,13 @@ class MemberController extends Controller
     /**編集処理  書き換え */
     //既存のレコードを取得して、編集してから保存する
     public function memberEdit(Request $request){
+        $request->validate([
+            'name'=>'required|max:20',
+            'phone' => 'required | numeric | digits_between:8,11',
+            'email' => 'required | string | email:strict,dns,spoof | max:255 | unique:users',
+        ]);
+
+
         $members = members::where('id','=',$request->id)->first();
         $members ->name = $request ->name;
         $members ->phone = $request ->phone;

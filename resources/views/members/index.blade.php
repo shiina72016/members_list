@@ -41,7 +41,7 @@
                             <a href="/edit/{{$members->id}}"> >>編集 </a>
                         </td>
                     </tr>
-                @endforeach          
+                @endforeach
         </table>
     </div>
 </div>
